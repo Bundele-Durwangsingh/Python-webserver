@@ -162,5 +162,5 @@ def delete_todo(identifier):
     return jsonify({"message": f"Todo '{identifier}' deleted successfully"}), 200
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
