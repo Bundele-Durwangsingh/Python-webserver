@@ -41,9 +41,26 @@ def init_db():
             )
         """)
         conn.commit()
-        print("Created new table: 'todo'")
-    else:
-        print("Table 'todo' already exists")
+
+    cursor.close()
+    conn.close()
+
+def init_user_db():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SHOW TABLES LIKE 'user'")
+    table_exists = cursor.fetchone()
+
+    if not table_exists:
+        cursor.execute("""
+            CREATE TABLE user (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(255) NOT NULL UNIQUE,
+                email VARCHAR(255) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL
+            )
+        """)
+        conn.commit()
 
     cursor.close()
     conn.close()
